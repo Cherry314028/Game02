@@ -89,7 +89,7 @@ function createCard(cardData, index) {
           firstCard.style.backgroundImage = "url('back.png')";
           secondCard.style.backgroundImage = "url('back.png')";
           resetTurn();
-        }, 1000);
+        }, 3000);
       }
     }
   });
