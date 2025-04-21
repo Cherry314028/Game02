@@ -16,6 +16,8 @@
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.3s;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .card.covered {
