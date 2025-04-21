@@ -56,7 +56,7 @@ function createCard(cardData, index) {
   card.dataset.image = cardData.image;
   card.dataset.pairId = cardData.pairId;
   card.dataset.index = index;
-  card.style.backgroundImage = "url('images/back.png')";
+  card.style.backgroundImage = "url('back.png')";
 
   card.addEventListener('click', () => {
     if (lock || card.classList.contains('matched') || !card.classList.contains('covered')) return;
