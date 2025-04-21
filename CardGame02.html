@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>隨機圖片小遊戲</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: sans-serif;
+      padding: 50px;
+      background-color: #f9f9f9;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 100px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 100px;
+      cursor: pointer;
+      border-radius: 10px;
+      width: 50%;
+      height: auto;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    img {
+      width:500px;
+      height: auto;
+      border-radius: 20px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>點我抽一張圖片！</h1>
+  <button onclick="showRandomImage()">抽圖片</button>
+  <img id="randomImage" src="" alt="這裡會顯示圖片" style="display: none;">
+
+  <script>
+    const images = [
+      "注音卡 (1).png",
+"注音卡 (2).png",
+"注音卡 (3).png",
+"注音卡 (4).png",
+"注音卡 (5).png",
+"注音卡 (6).png",
+"注音卡 (7).png",
+"注音卡 (8).png",
+"注音卡 (9).png",
+"注音卡 (10).png",
+"注音卡 (11).png",
+"注音卡 (12).png",
+"注音卡 (13).png",
+"注音卡 (14).png",
+"注音卡 (15).png",
+"注音卡 (16).png",
+"注音卡 (17).png",
+"注音卡 (18).png",
+"注音卡 (19).png",
+"注音卡 (20).png",
+"注音卡 (21).png",
+"注音卡 (22).png",
+"注音卡 (23).png",
+"注音卡 (24).png",
+"注音卡 (25).png",
+"注音卡 (26).png",
+"注音卡 (27).png",
+"注音卡 (28).png",
+"注音卡 (29).png",
+"注音卡 (30).png",
+"注音卡 (31).png",
+"注音卡 (32).png",
+"注音卡 (33).png",
+"注音卡 (34).png",
+"注音卡 (35).png",
+"注音卡 (36).png",
+"注音卡 (37).png",
+"注音卡 (38).png",
+"注音卡 (39).png",
+"注音卡 (40).png",
+"注音卡 (41).png",
+"注音卡 (42).png",
+"注音卡 (43).png",
+"注音卡 (44).png",
+"注音卡 (45).png",
+"注音卡 (46).png",
+"注音卡 (47).png",
+"注音卡 (48).png",
+"注音卡 (49).png",
+"注音卡 (50).png",
+"注音卡 (51).png",
+"注音卡 (52).png",
+"注音卡 (53).png",
+"注音卡 (54).png",
+"注音卡 (55).png",
+"注音卡 (56).png",
+"注音卡 (57).png",
+"注音卡 (58).png",
+"注音卡 (59).png",
+"注音卡 (60).png",
+"注音卡 (61).png",
+"注音卡 (62).png",
+"注音卡 (63).png",
+"注音卡 (64).png",
+"注音卡 (65).png",
+"注音卡 (66).png",
+"注音卡 (67).png",
+"注音卡 (68).png",
+"注音卡 (69).png",
+"注音卡 (70).png",
+"注音卡 (71).png",
+"注音卡 (72).png",
+"注音卡 (73).png",
+"注音卡 (74).png",
+"注音卡 (75).png",
+"注音卡 (76).png",
+"注音卡 (77).png",
+"注音卡 (78).png",
+"注音卡 (79).png",
+"注音卡 (80).png",
+"注音卡 (81).png",
+"注音卡 (82).png",
+"注音卡 (83).png",
+"注音卡 (84).png",
+"注音卡 (85).png",
+"注音卡 (86).png",
+"注音卡 (87).png",
+"注音卡 (88).png",
+"注音卡 (89).png",
+"注音卡 (90).png",
+"注音卡 (91).png",
+"注音卡 (92).png",
+"注音卡 (93).png",
+"注音卡 (94).png",
+"注音卡 (95).png",
+"注音卡 (96).png",
+"注音卡 (97).png",
+"注音卡 (98).png",
+"注音卡 (99).png",
+"注音卡 (100).png",
+"注音卡 (101).png",
+"注音卡 (102).png",
+"注音卡 (103).png",
+"注音卡 (104).png",
+"注音卡 (105).png",
+"注音卡 (106).png",
+"注音卡 (107).png",
+"注音卡 (108).png",
+"注音卡 (109).png"
+
+    ];
+
+    function showRandomImage() {
+      const img = document.getElementById("randomImage");
+      const randomIndex = Math.floor(Math.random() * images.length);
+      img.src = images[randomIndex];
+      img.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
