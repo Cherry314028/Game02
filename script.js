@@ -86,8 +86,8 @@ function createCard(cardData, index) {
         setTimeout(() => {
           firstCard.classList.add('covered');
           secondCard.classList.add('covered');
-          firstCard.style.backgroundImage = "url('images/back.png')";
-          secondCard.style.backgroundImage = "url('images/back.png')";
+          firstCard.style.backgroundImage = "url('back.png')";
+          secondCard.style.backgroundImage = "url('back.png')";
           resetTurn();
         }, 1000);
       }
