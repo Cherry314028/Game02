@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>圖片加減法題目（0-9 組圖）</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: sans-serif;
+      padding: 50px;
+      background-color: #f9f9f9;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 100px;
+      margin-bottom: 100px;
+    }
+
+    button {
+      padding: 12px 24px; 
+      font-size: 100px;
+      cursor: pointer;
+      border-radius: 10px;
+      width: 50%;
+      height: auto;
+      background-color: #F0A8D0;
+      color: white;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #FFC100;
+    }
+
+    .question {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .digit {
+      display: flex;
+    }
+
+    .digit img, .symbol img {
+      width: 100px;
+      height: auto;
+    }
+
+    .symbol {
+      margin: 0 10px;
+    }
+
+    .equal {
+      font-size: 100px;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>圖片加減法題目</h1>
+  <div class="question" id="questionBox"></div>
+  <button onclick="showQuestion()">下一題</button>
+
+  <script>
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function numberToImages(n) {
+      return String(n).split('').map(d => `<img src="${d}.png" alt="${d}">`).join('');
+    }
+
+    function showQuestion() {
+      let a, b, op, result;
+      const ops = ['plus', 'minus'];
+      const questionBox = document.getElementById('questionBox');
+
+      do {
+        a = getRandomInt(1, 20);
+        b = getRandomInt(1, 20);
+        op = ops[Math.floor(Math.random() * ops.length)];
+        result = op === 'plus' ? a + b : a - b;
+      } while (result < 0);
+
+      questionBox.innerHTML = `
+        <div class="digit">${numberToImages(a)}</div>
+        <div class="symbol"><img src="${op}.png" alt="${op}"></div>
+        <div class="digit">${numberToImages(b)}</div>
+        <div class="equal">= ?</div>
+      `;
+    }
+
+    showQuestion();
+  </script>
+
+</body>
+</html>
