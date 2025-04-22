@@ -118,7 +118,7 @@
     </tr>
     <tr>
     <td>
-  <h1>圖片加減法</h1>
+ 
 
   <div class="question" id="questionBox"></div>
 
@@ -155,10 +155,10 @@
       const questionBox = document.getElementById('questionBox');
       questionBox.innerHTML = `
         <div class="digit">${numberToImages(a)}</div>
-        <div class="symbol"><img src="${op}.png" alt="${op}"></div>
+        <div class="symbol"><img src="${op}.png" alt="${op}" width="400" height="300"></div>
         <div class="digit">${numberToImages(b)}</div>
-        <div class="equal"><img src="equal.png" alt="equal"></div>
-      `;
+        <div class="equal"><img src="equal.png" alt="equal"  width="400" height="300"></div>
+      
 
       document.getElementById('userAnswer').value = '';
       document.getElementById('result').textContent = '';
