@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>圖片加減法題目（0-9 組圖）</title>
+  <title>圖片加減法題目（作答功能）</title>
   <style>
     body {
       display: flex;
@@ -18,23 +18,6 @@
     h1 {
       font-size: 100px;
       margin-bottom: 100px;
-    }
-
-    button {
-      padding: 12px 24px; 
-      font-size: 100px;
-      cursor: pointer;
-      border-radius: 10px;
-      width: 50%;
-      height: auto;
-      background-color: #F0A8D0;
-      color: white;
-      border: none;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #FFC100;
     }
 
     .question {
@@ -63,15 +46,75 @@
       font-size: 100px;
       margin-left: 20px;
     }
+
+    input[type="number"] {
+      font-size: 60px;
+      padding: 10px 20px;
+      width: 200px;
+      text-align: center;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+    }
+
+    .result {
+      font-size: 80px;
+      margin-bottom: 50px;
+    }
+
+    button {
+      padding: 12px 24px; 
+      font-size: 80px;
+      cursor: pointer;
+      border-radius: 10px;
+      width: 50%;
+      height: auto;
+      background-color: #F0A8D0;
+      color: white;
+      border: none;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+    }
+
+    button:hover {
+      background-color: #FFC100;
+    }
   </style>
 </head>
 <body>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#F3F3E0" style="display:inline-flex">
+      <a href="index.html"><img class="img" src="選單1.png" alt="按紐1" name="button1" id="button1"></a>
+      <a href="CardGame02.html"><img class="img" src="選單2.png" alt="按紐2" name="button2" id="button2"></a>
+      <a href="Game03.html"><img class="img" src="選單3.png" alt="按紐3" name="button3" id="button3"></a>
+      <a href="Test01.html"><img class="img" src="選單4.png" alt="按紐4" name="button4" id="button4"></a>      
+      <a href="Else01.html"><img class="img" src="選單5.png" alt="按紐5" name="button5" id="button5"></a> 
+    </td>
+	  
+  </tr>
+	
+  <tr>
+    <td align="center">
+	    <img class="img" src="分隔線2.png" alt="分隔線" name="Divider1" id="Divider1">
+    <img class="img" src="標題2.png" alt="標題2" name="Tit2" id="Tit2">
+    </td>
+    </tr>
+    <tr>
+    <td >
+  <h1>圖片加減法</h1>
 
-  <h1>圖片加減法題目</h1>
   <div class="question" id="questionBox"></div>
+
+  <input type="number" id="userAnswer" placeholder="輸入答案">
+  <div class="result" id="result"></div>
+
+  <button onclick="checkAnswer()">提交答案</button>
   <button onclick="showQuestion()">下一題</button>
 
   <script>
+    let currentAnswer = 0;
+
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
@@ -81,9 +124,8 @@
     }
 
     function showQuestion() {
-      let a, b, op, result;
       const ops = ['plus', 'minus'];
-      const questionBox = document.getElementById('questionBox');
+      let a, b, op, result;
 
       do {
         a = getRandomInt(1, 20);
@@ -92,16 +134,44 @@
         result = op === 'plus' ? a + b : a - b;
       } while (result < 0);
 
+      currentAnswer = result;
+
+      const questionBox = document.getElementById('questionBox');
       questionBox.innerHTML = `
         <div class="digit">${numberToImages(a)}</div>
         <div class="symbol"><img src="${op}.png" alt="${op}"></div>
         <div class="digit">${numberToImages(b)}</div>
-        <div class="equal">= ?</div>
+        <div class="equal">=</div>
       `;
+
+      document.getElementById('userAnswer').value = '';
+      document.getElementById('result').textContent = '';
     }
 
+    function checkAnswer() {
+      const userInput = document.getElementById('userAnswer').value;
+      const resultBox = document.getElementById('result');
+
+      if (userInput === '') {
+        resultBox.textContent = '請輸入答案';
+        resultBox.style.color = 'red';
+        return;
+      }
+
+      if (parseInt(userInput) === currentAnswer) {
+        resultBox.textContent = '✅ 正確！';
+        resultBox.style.color = 'green';
+      } else {
+        resultBox.textContent = '❌ 錯誤，請再試一次';
+        resultBox.style.color = 'red';
+      }
+    }
+
+    // 初始顯示一題
     showQuestion();
   </script>
-
+</td>
+</tr>
+</table>
 </body>
 </html>
