@@ -94,6 +94,30 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     display: block;
   }
+	  
+	  .number-img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
+    #answer-input {
+      width: 60px;
+      font-size: 20px;
+      text-align: center;
+      margin-left: 10px;
+    }
+
+    #check-btn {
+      margin-left: 10px;
+      font-size: 16px;
+    }
+
+    #feedback {
+      font-weight: bold;
+      margin-top: 10px;
+    }
 </style>
 
 </head>
@@ -119,72 +143,61 @@
 </table>
  
 
-  <div class="question" id="questionBox">
-
-  <input type="number" id="userAnswer" placeholder="輸入答案">
- 
-
-  <button onclick="checkAnswer()">提交答案</button>
-  </div>
-   <div class="result" id="result"></div>
-  <button onclick="showQuestion()">下一題</button>
+ <div id="question"></div>
+  <input type="number" id="answer-input" placeholder="？" min="0" max="20">
+  <button id="check-btn">檢查答案</button>
+  <div id="feedback"></div>
 
   <script>
-    let currentAnswer = 0;
+    let correctAnswer = 0;
 
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+    function numberToImage(n) {
+      return `<img src="/${n}.png" alt="${n}" class="number-img">`;
     }
 
-    function numberToImages(n) {
-      return String(n).split('').map(d => `<img src="${d}.png" alt="${d}">`).join('');
+    function symbolToImage(symbol) {
+      let filename = '';
+      if (symbol === '+') filename = 'plus';
+      else if (symbol === '-') filename = 'minus';
+      else if (symbol === '=') filename = 'equal';
+      return `<img src="/${filename}.png" alt="${symbol}" class="number-img">`;
     }
 
-    function showQuestion() {
-      const ops = ['plus', 'minus'];
-      let a, b, op, result;
-
-      do {
-        a = getRandomInt(1, 20);
-        b = getRandomInt(1, 20);
-        op = ops[Math.floor(Math.random() * ops.length)];
-        result = op === 'plus' ? a + b : a - b;
-      } while (result < 0 || result > 20);
-
-      currentAnswer = result;
-
-      const questionBox = document.getElementById('questionBox');
-      questionBox.innerHTML = `
-        <div class="digit">${numberToImages(a)}</div>
-  <div class="symbol"><img src="${op}.png" alt="${op}" width="300" height="400"></div>
-  <div class="digit">${numberToImages(b)}</div>
-  <div class="equal"><img src="equal.png" alt="equal" width="300" height="400"></div>
-`;
-
-      document.getElementById('userAnswer').value = '';
-      document.getElementById('result').textContent = '';
+    function renderQuestion(a, operator, b) {
+      correctAnswer = operator === '+' ? a + b : a - b;
+      const html = `
+        ${numberToImage(a)}
+        ${symbolToImage(operator)}
+        ${numberToImage(b)}
+        ${symbolToImage('=')}
+        <img src="/question_mark.png" alt="?" class="number-img">
+      `;
+      document.getElementById("question").innerHTML = html;
+      document.getElementById("feedback").innerText = '';
+      document.getElementById("answer-input").value = '';
     }
 
-    function checkAnswer() {
-      const userInput = document.getElementById('userAnswer').value;
-      const resultBox = document.getElementById('result');
+    document.getElementById("check-btn").addEventListener("click", function () {
+      const userAnswer = parseInt(document.getElementById("answer-input").value, 10);
+      const feedback = document.getElementById("feedback");
 
-      if (userInput === '') {
-        resultBox.textContent = '請輸入答案';
-        resultBox.style.color = 'red';
+      if (isNaN(userAnswer)) {
+        feedback.innerText = "請輸入答案！";
+        feedback.style.color = "orange";
         return;
       }
 
-      if (parseInt(userInput) === currentAnswer) {
-        resultBox.textContent = '✅ 正確！';
-        resultBox.style.color = 'green';
+      if (userAnswer === correctAnswer) {
+        feedback.innerText = "答對了！🎉";
+        feedback.style.color = "green";
       } else {
-        resultBox.textContent = '❌ 錯誤，請再試一次';
-        resultBox.style.color = 'red';
+        feedback.innerText = `答錯了，正確答案是 ${correctAnswer}。`;
+        feedback.style.color = "red";
       }
-    }
+    });
 
-    showQuestion();
+    // 顯示初始題目（範例：8 - 3）
+    renderQuestion(8, '-', 3);
   </script>
 
 </body>
