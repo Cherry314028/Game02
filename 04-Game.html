@@ -152,7 +152,7 @@
     let correctAnswer = 0;
 
     function numberToImage(n) {
-      return `<img src="/${n}.png" alt="${n}" class="number-img">`;
+      return `<img src="${n}.png" alt="${n}" class="number-img">`;
     }
 
     function symbolToImage(symbol) {
@@ -160,7 +160,7 @@
       if (symbol === '+') filename = 'plus';
       else if (symbol === '-') filename = 'minus';
       else if (symbol === '=') filename = 'equal';
-      return `<img src="/${filename}.png" alt="${symbol}" class="number-img">`;
+      return `<img src="${filename}.png" alt="${symbol}" class="number-img">`;
     }
 
     function renderQuestion(a, operator, b) {
@@ -170,7 +170,7 @@
         ${symbolToImage(operator)}
         ${numberToImage(b)}
         ${symbolToImage('=')}
-        <img src="/question_mark.png" alt="?" class="number-img">
+        <img src="question_mark.png" alt="?" class="number-img">
       `;
       document.getElementById("question").innerHTML = html;
       document.getElementById("feedback").innerText = '';
