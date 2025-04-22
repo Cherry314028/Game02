@@ -67,7 +67,7 @@
   input[type="number"] {
     font-size: 100px;
     padding: 10px 20px;
-    width: 200px;
+    width: 500px;
     text-align: center;
     margin-bottom: 30px;
     border-radius: 10px;
@@ -154,10 +154,10 @@
       const questionBox = document.getElementById('questionBox');
       questionBox.innerHTML = `
         <div class="digit">${numberToImages(a)}</div>
-        <div class="symbol"><img src="${op}.png" alt="${op}" width="400" height="300"></div>
-        <div class="digit">${numberToImages(b)}</div>
-        <div class="equal"><img src="equal.png" alt="equal"  width="400" height="300"></div>
-      `;
+  <div class="symbol"><img src="${op}.png" alt="${op}" width="300" height="400"></div>
+  <div class="digit">${numberToImages(b)}</div>
+  <div class="equal"><img src="equal.png" alt="equal" width="300" height="400"></div>
+`;
 
       document.getElementById('userAnswer').value = '';
       document.getElementById('result').textContent = '';
