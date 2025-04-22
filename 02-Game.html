@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>卡片配對遊戲</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: sans-serif;
+      padding: 50px;
+      background-color: #f9f9f9;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 100px;
+      margin-bottom: 100px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 100px;
+      cursor: pointer;
+      border-radius: 10px;
+      width: 50%;
+      height: auto;
+      background-color: #F0A8D0;
+      color: white;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #FFC100;
+    }
+
+    img {
+      width:100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <table width="100%" border="0">
+  <tr>
+    <td bgcolor="#F3F3E0" style="display:inline-flex">
+    <a href="index.html"><img class="img" src="選單1.png" alt="按紐1" name="button1" id="button1"></a>
+      <a href="02-Game.html"><img class="img" src="選單2.png" alt="按紐2" name="button2" id="button2"></a>
+      <a href="03-Test.html"><img class="img" src="選單3.png" alt="按紐3" name="button3" id="button3"></a>
+      <a href="04-Game.html"><img class="img" src="選單4.png" alt="按紐4" name="button4" id="button4"></a>      
+      <a href="05-Else.html"><img class="img" src="選單5.png" alt="按紐5" name="button5" id="button5"></a>     
+    </td>
+  </tr>
+	  
+	  <tr>
+  <td>
+   <img class="img" src="分隔線2.png" alt="分隔線" name="Divider1" id="Divider1" style="margin-top: 30px;">
+  </td>
+ 
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+
+ <img class="img" src="標題3.png" alt="標題3" name="Tit3" id="Tit3">
+ 
+  <h1><div id="timer-container">計時：<span id="timer">0</span> 秒</div></h1>
+  <div id="game-board"></div>
+  <h1><div id="message"></div></h1>
+
+  <script src="script.js"></script>
+   </td>
+  </tr>
+</body>
+</html>
