@@ -1,0 +1,205 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: sans-serif;
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-size: 48px;
+  margin: 30px 0;
+  text-align: center;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 50%;
+  background-color: #F0A8D0;
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #FFC100;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  background-color: #F3F3E0;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.menu img {
+  max-width: 170px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.divider,
+.title-section {
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.divider img,
+.title-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin: 30px auto;
+}
+
+.card {
+  aspect-ratio: 1 / 1;
+  background-size: contain;
+  /* 圖片完整呈現且自動縮放 */
+  background-repeat: no-repeat;
+  /* 不要重複 */
+  background-position: center;
+  /* 置中顯示 */
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+#question {
+  white-space: nowrap;
+  overflow-x: auto;
+  margin-top: 50px;
+}
+
+#question img.number-img {
+  max-width: 150px;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+ #answer-input {
+   font-size: 24px;
+   width: 100px;
+   height: 50px;
+   text-align: center;
+   margin: 50px 0;
+ }
+
+ .test-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.test-images a {
+  flex: 1 1 calc(50% - 20px); /* 一行最多兩個，扣掉間距 */
+  max-width: 360px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.test-images img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.test-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.test-images a {
+  width: calc(50% - 20px);
+  /* 明確限制只分兩欄 */
+  max-width: 400px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.test-images img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.link-block {
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+/* 抽圖片按鈕變大一點 */
+#drawButton {
+  font-size: 24px;
+  width: 300px;
+  padding: 12px 24px;
+  margin-bottom: 20px;
+  /* 按鈕和圖片之間的空隙 */
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffcc00;
+  color: #333;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 包住按鈕和圖片的區塊 */
+.random-image-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* 圖片初始隱藏 + 固定寬度 */
+#randomImage {
+  display: none;
+  width: 600px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  #game-board {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  #game-board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+}

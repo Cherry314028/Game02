@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <title>隨機圖片小遊戲</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+
+  <div class="menu">
+    <a href="index.html"><img src="images/選單1.jpg" alt="按鈕1"></a>
+    <a href="02-Game.html"><img src="images/選單2.jpg" alt="按鈕2"></a>
+    <a href="03-Test.html"><img src="images/選單3.jpg" alt="按鈕3"></a>
+    <a href="04-Game.html"><img src="images/選單4.jpg" alt="按鈕4"></a>
+    <a href="05-Else.html"><img src="images/選單5.jpg" alt="按鈕5"></a>
+  </div>
+
+  <div class="divider">
+    <img src="images/分隔線2.jpg" alt="分隔線">
+    <img class="img" src="images/標題1.jpg" alt="標題3" name="Tit3" id="Tit3">
+  </div>
+
+  <div class="random-image-section">
+    <button id="drawButton" onClick="showRandomImage()">抽圖片</button>
+    <img id="randomImage" src="" alt="這裡會顯示圖片">
+  </div>
+  <script>
+    const images = Array.from({ length: 109 }, (_, i) => `注音卡 (${i + 1}).jpg`);
+
+    function showRandomImage() {
+      const img = document.getElementById("randomImage");
+      const randomIndex = Math.floor(Math.random() * images.length);
+      img.src = 'images/' + images[randomIndex];
+      img.style.display = "block";
+    }
+  </script>
+
+</body>
+
+</html>
