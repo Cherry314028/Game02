@@ -28,12 +28,36 @@
   </div>
   <script>
     const images = Array.from({ length: 109 }, (_, i) => `注音卡 (${i + 1}).jpg`);
+    const imgElem = document.getElementById("randomImage");
+    const btn = document.getElementById("drawButton");
+
+    btn.addEventListener("click", showRandomImage);
+    imgElem.addEventListener("click", switchToPictureCard);
 
     function showRandomImage() {
-      const img = document.getElementById("randomImage");
       const randomIndex = Math.floor(Math.random() * images.length);
-      img.src = 'images/' + images[randomIndex];
-      img.style.display = "block";
+      // 設置 src、data-index、data-type，並顯示
+      imgElem.src = 'images/' + images[randomIndex];
+      imgElem.style.display = "block";
+      imgElem.dataset.index = randomIndex + 1;      // 1 ~ 109
+      imgElem.dataset.type = 'zhuyin';             // 當前是注音卡
+      imgElem.alt = `注音卡 (${randomIndex + 1})`;
+    }
+
+    function switchToPictureCard() {
+      const idx = imgElem.dataset.index;
+      const type = imgElem.dataset.type;
+      if (type === 'zhuyin') {
+        // 換成圖片卡
+        imgElem.src = `images/圖片卡 (${idx}).jpg`;
+        imgElem.dataset.type = 'picture';
+        imgElem.alt = `圖片卡 (${idx})`;
+      } else {
+        // 如果想要點回去也可以，再切回注音卡
+        imgElem.src = `images/注音卡 (${idx}).jpg`;
+        imgElem.dataset.type = 'zhuyin';
+        imgElem.alt = `注音卡 (${idx})`;
+      }
     }
   </script>
 
