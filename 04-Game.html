@@ -26,19 +26,20 @@
   </div>
 
   <div id="question"></div>
-  <input type="number" id="answer-input" placeholder="？" min="0" max="20">
-  <button id="check-btn">檢查答案</button>
   <div id="feedback"></div>
+  <input type="number" id="answer-input">
+  <button id="check-btn">檢查答案</button>
+  
+  <button id="next-btn" style="display:none;">下一題</button>
+  
 
   <script>
     let correctAnswer = 0;
 
-    // 將數字轉換成對應的圖片 HTML
     function numberToImage(n) {
       return `<img src="images/${n}.jpg" alt="${n}" class="number-img">`;
     }
 
-    // 將符號轉換成對應的圖片 HTML
     function symbolToImage(symbol) {
       let filename = '';
       if (symbol === '+') filename = 'plus';
@@ -47,21 +48,16 @@
       return `<img src="images/${filename}.jpg" alt="${symbol}" class="number-img">`;
     }
 
-    // 產生隨機題目
     function getRandomQuestion() {
-      let a = Math.floor(Math.random() * 11); // 0~10
-      let b = Math.floor(Math.random() * 11); // 0~10
+      let a = Math.floor(Math.random() * 11);
+      let b = Math.floor(Math.random() * 11);
       let operator = Math.random() < 0.5 ? '+' : '-';
 
-      // 如果是減法且 a < b，交換以避免負數
-      if (operator === '-' && a < b) {
-        [a, b] = [b, a];
-      }
+      if (operator === '-' && a < b) [a, b] = [b, a];
 
       return { a, b, operator };
     }
 
-    // 顯示題目並更新正確答案
     function renderQuestion(a, operator, b) {
       correctAnswer = operator === '+' ? a + b : a - b;
       const html = `
@@ -74,19 +70,19 @@
       document.getElementById("question").innerHTML = html;
       document.getElementById("feedback").innerText = '';
       document.getElementById("answer-input").value = '';
+      document.getElementById("next-btn").style.display = "none";
+      document.getElementById("check-btn").style.display = 'inline-block';
     }
 
-    // 產生並顯示下一題
     function generateNewQuestion() {
       const { a, b, operator } = getRandomQuestion();
       renderQuestion(a, operator, b);
     }
 
-    // 檢查答案按鈕點擊事件
     document.getElementById("check-btn").addEventListener("click", function () {
       const userAnswer = parseInt(document.getElementById("answer-input").value, 10);
       const feedback = document.getElementById("feedback");
-
+      feedback.style.fontSize = "36px";
       if (isNaN(userAnswer)) {
         feedback.innerText = "請輸入答案！";
         feedback.style.color = "orange";
@@ -94,15 +90,19 @@
       }
 
       if (userAnswer === correctAnswer) {
-        feedback.innerText = "答對了！🎉 下一題...";
+        feedback.innerText = "答對了！🎉 點選「下一題」";
         feedback.style.color = "green";
-        setTimeout(() => {
-          generateNewQuestion();
-        }, 1500); // 1 秒後切換下一題
+        document.getElementById("next-btn").style.display = "inline-block";
+        document.getElementById("check-btn").style.display = 'none';
       } else {
         feedback.innerText = `答錯了，正確答案是 ${correctAnswer}。`;
         feedback.style.color = "red";
       }
+    });
+
+    // 下一題按鈕事件
+    document.getElementById("next-btn").addEventListener("click", function () {
+      generateNewQuestion();
     });
 
     // 顯示第一題
